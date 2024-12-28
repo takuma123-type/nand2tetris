@@ -1,0 +1,17 @@
+CHIP Xor {
+    IN a, b;
+    OUT out;
+
+    PARTS:
+        // aを反転
+        Not(in=a, out=notA);
+        // bを反転
+        Not(in=b, out=notB);
+
+        // 中間信号を生成
+        Nand(a=a, b=notB, out=w1); // a ∧ ¬b
+        Nand(a=notA, b=b, out=w2); // ¬a ∧ b
+
+        // XOR出力を生成
+        Nand(a=w1, b=w2, out=out); // (a ∧ ¬b) ∨ (¬a ∧ b)
+}

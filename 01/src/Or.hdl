@@ -1,0 +1,10 @@
+CHIP Or {
+    IN a, b;
+    OUT out;
+
+    PARTS:
+    // どちらか一方でも1であれば、出力は1。両方0の場合のみ出力は0。
+    Not(in=a, out=notA);     // aを反転してnotAに保存
+    Not(in=b, out=notB);     // bを反転してnotBに保存
+    Nand(a=notA, b=notB, out=out); // notAとnotBのNAND結果をoutに出力
+}

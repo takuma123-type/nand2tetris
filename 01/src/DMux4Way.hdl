@@ -1,0 +1,13 @@
+CHIP DMux4Way {
+    IN in, sel[2];
+    OUT a, b, c, d;
+
+    PARTS:
+    // sel[0] が 0 の場合、a に in を出力
+    // sel[0] が 1 の場合、b に in を出力
+    DMux(in=in, sel=sel[1], a=w1, b=w2);
+    // sel[1] が 0 の場合、c に w1 を出力
+    // sel[1] が 1 の場合、d に w2 を出力
+    DMux(in=w1, sel=sel[0], a=a, b=b);
+    DMux(in=w2, sel=sel[0], a=c, b=d);
+}

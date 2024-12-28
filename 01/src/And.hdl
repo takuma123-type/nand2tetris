@@ -1,0 +1,10 @@
+CHIP And {
+    IN a, b;
+    OUT out;
+
+    PARTS:
+    // a と b の両方が 1 の場合、NAND ゲートは 0 を出力します。
+    // それ以外の場合、NAND ゲートは 1 を出力します。
+    Nand(a=a, b=b, out=notAB);
+    Not(in=notAB, out=out);
+}

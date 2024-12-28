@@ -1,0 +1,11 @@
+CHIP DMux {
+    IN in, sel;
+    OUT a, b;
+
+    PARTS:
+    // sel が 0 の場合、a に in を出力
+    // sel が 1 の場合、b に in を出力
+    Not(in=sel, out=notSel);
+    And(a=in, b=notSel, out=a);
+    And(a=in, b=sel, out=b);
+}

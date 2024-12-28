@@ -1,0 +1,12 @@
+CHIP Mux {
+    IN a, b, sel;
+    OUT out;
+
+    PARTS:
+    // sel が 0 の場合、out は a に等しい。
+    // sel が 1 の場合、out は b に等しい。
+    Not(in=sel, out=notSel); // selを反転してnotSelに保存
+    And(a=a, b=notSel, out=w1); // aとnotSelのAND結果をw1に保存
+    And(a=b, b=sel, out=w2); // bとselのAND結果をw2に保存
+    Or(a=w1, b=w2, out=out); // w1とw2のOR結果をoutに保存
+}
